@@ -10,16 +10,19 @@ while escolha != 0:
     print("4 - imprimir estoque")
     escolha = int(input('Faça sua escolha:'))
     if escolha == 0:
-        print('Até mais')
+        print('Até mais!')
     if escolha == 1:
         x = str(input('nome do produto:'))
         
         if x not in estoque:
             estoque[x] = {}         #se o produto não estiver no estoque, ele deve ser colocado
             a = int(input('quantidade inicial:'))
-            if a < 0:
-                print('numero invalido')
-            else:
+            while a < 0:
+                print('A quantidade inicial não pode ser negativa.')
+                a = int(input('quantidade inicial:'))
+            b = float(input('valor do produto:'))
+            estoque[x]["quantidade"] = a
+            estoque[x]["valor"] = b
                 b = float(input('valor do produto:'))
                 estoque[x]["quantidade"] = a
                 estoque[x]["valor"] = b
@@ -47,6 +50,8 @@ while escolha != 0:
                nova_quantidade = int(input("Nova quantidade:"))
                estoque[produto]["quantidade"] = nova_quantidade + a
                a = estoque[produto]["quantidade"]
+           if produto not in estoque:
+                print('Elemento não encontrado.')     
         if escolhaAlterar == 2:
             produto = str(input("Escolha o produto:"))
             if produto in estoque:
