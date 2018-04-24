@@ -60,12 +60,3 @@ while escolha != 0:
         
     if escolha == 4:
         print(estoque)
-        
-
-
-
-
-
-
-
-
