@@ -1,1 +1,26 @@
-
+{
+    "apple": {
+        "celular": {
+            "quantidade": 100,
+            "valor unit\u00e1rio": 50.0
+        },
+        "ipad": {
+            "quantidade": 30,
+            "valor unit\u00e1rio": 200.0
+        }
+    },
+    "nike": {
+        "camisa": {
+            "quantidade": 10,
+            "valor unit\u00e1rio": 2.0
+        },
+        "short": {
+            "quantidade": 5,
+            "valor unit\u00e1rio": 5.0
+        },
+        "tenis": {
+            "quantidade": 2,
+            "valor unit\u00e1rio": 10.0
+        }
+    }
+}
