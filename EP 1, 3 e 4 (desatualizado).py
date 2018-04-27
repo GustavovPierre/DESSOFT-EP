@@ -60,3 +60,14 @@ while escolha != 0:
         
     if escolha == 4:
         print(estoque)
+
+for produto in estoque:
+    if estoque[produto]["quantidade"]< 0:
+        negativo.append(produto)
+        print ('Os produtos com quantidade de estoque negativo são: {0}'.format(negativo))
+
+valor=0
+for produto in estoque:
+    valor=valor + estoque[produto]['quantidade'] * estoque[produto]['valor']
+print('O valor monetário total no estoque é de {0} reais'.format(valor))
+
