@@ -2,11 +2,8 @@
 """
 Created on Wed Apr 25 00:34:42 2018
 
-@author: gppie
+@author: gppie & lucasmuchaluat
 """
-
-
-
 import json
 with open ("Lojas.json","r") as arquivo:
     texto = arquivo.read()
@@ -55,7 +52,89 @@ while escolha0 != 0:
         loja = str(input('Nome da loja a ser analizada:'))
         if loja not in Lojas:
             print('Loja não cadastrada')
-            
+        else:
+            escolha = 10
+            negativo = []
+            while escolha != 0:
+                print("0 - Sair")
+                print("1 - Adicionar item")
+                print("2 - Remover item")
+                print("3 - Alterar item")
+                print("4 - Analisar estoque")
+                escolha = int(input('Escolha um comando acima:'))
+                if escolha == 0:
+                    print('Redirecionando para o menu principal...')
+                if escolha == 1:
+                    x = str(input('Nome do produto:'))
+                    
+                    if x not in Lojas[loja]:
+                        Lojas[loja][x] = {}
+                        a = int(input('Quantidade inicial:'))
+                        while a < 0:
+                            print('A quantidade inicial não pode ser negativa.')
+                            a = int(input('Quantidade inicial: '))
+                        b = float(input('Valor unitário do produto: '))
+                        while b < 0:
+                            print('O valor do produto não pode ser negativo.')
+                            b = float(input('Valor unitário do produto: '))
+                        Lojas[loja][x]["quantidade"] = a
+                        Lojas[loja][x]["valor unitário"] = b
+                        
+                    else:
+                        print('Produto já cadastrado')
+                    print(Lojas[loja])
+                if escolha == 2:
+                    w = str(input('Qual produto deseja remover?'))
+                    if w not in Lojas[loja]:
+                        print('Produto não encontrado')
+                    if w in Lojas[loja]:
+                        del Lojas[loja][w]
+                    print(Lojas[loja])
+                    
+                if escolha == 3:
+                    print("1 - Alterar quantidade")
+                    print("2 - Alterar valor unitário")
+                    escolha_alterar = int(input("Faça sua escolha: "))
+                    
+                    if escolha_alterar == 1:
+                        print(Lojas[loja])
+                        produto = str(input("Escolha o produto:"))
+                        if produto in Lojas[loja]:
+                            nova_quantidade = int(input("Quantidade a adicionar:"))
+                            quantidade_inicial = Lojas[loja][produto]["quantidade"]
+                            Lojas[loja][produto]["quantidade"] = nova_quantidade + quantidade_inicial
+                            quantidade_inicial = Lojas[loja][produto]["quantidade"]
+                        else:
+                            print('Elemento não encontrado.')
+                    if escolha_alterar == 2:
+                        produto = str(input("Escolha o produto:"))
+                        if produto in Lojas[loja]:
+                            novo_valor = float(input("Novo valor unitário: "))
+                            while novo_valor < 0:
+                                print('O valor do produto não pode ser negativo.')
+                                novo_valor = float(input('Novo valor unitário: '))
+                            Lojas[loja][produto]["valor unitário"] = novo_valor
+                    print(Lojas[loja])
+                if escolha == 4:
+                    print("1 - Imprimir estoque")
+                    print("2 - Imprimir valor monetário total")
+                    print("3 - Verificar se há produtos com quantidade negativa")
+                    escolha_impressao = int(input("Faça sua escolha: "))
+                    
+                    if escolha_impressao == 1:
+                        print(Lojas[loja])
+                    if escolha_impressao == 2:
+                        valor=0
+                        for produto in Lojas[loja]:
+                            valor=valor + Lojas[loja][produto]['quantidade'] * Lojas[loja][produto]['valor unitário']
+                        print('O valor monetário total em {0} é de {1} reais'.format(loja,valor))
+                    if escolha_impressao == 3:
+                        for produto in Lojas[loja]:
+                            if Lojas[loja][produto]["quantidade"]< 0:
+                                negativo.append(produto)
+                                print ('Os produtos com quantidade de estoque negativo em {0} são: {1}'.format(loja, negativo))
+                        if negativo == []:
+                            print('Não há produtos com quantidade de estoque negativa em {0}.'.format(loja))
+           
 with open ("Lojas.json","w") as arquivo:
     arquivo.write(json.dumps(Lojas,sort_keys = True, indent = 4))            
-            
