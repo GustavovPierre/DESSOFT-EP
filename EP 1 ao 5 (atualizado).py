@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Apr 25 00:34:42 2018
-
 @author: gppie & lucasmuchaluat
 """
 import json
@@ -11,6 +10,7 @@ with open ("Lojas.json","r") as arquivo:
 Lojas = json.loads(texto)
 escolha0=10
 while escolha0 != 0:
+    
     print("0 - Sair")
     print("1 - Adicionar loja")
     print("2 - Remover loja")
