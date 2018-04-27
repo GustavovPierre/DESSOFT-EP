@@ -55,3 +55,7 @@ while escolha0 != 0:
         loja = str(input('Nome da loja a ser analizada:'))
         if loja not in Lojas:
             print('Loja não cadastrada')
+            
+with open ("Lojas.json","w") as arquivo:
+    arquivo.write(json.dumps(Lojas,sort_keys = True, indent = 4))            
+            
